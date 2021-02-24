@@ -31,6 +31,8 @@ from matplotlib.transforms import Bbox
 from matplotlib.widgets import SubplotTool
 from PIL.Image import Image
 
+_DetrendCallable = Callable[[ArrayLike], ArrayLike]
+
 # TODO: data params need to be Dicts/mappings?
 # TODO: Are some of these more reasonable in tooltips when split out as overloads?
 
@@ -147,7 +149,7 @@ def cohere(
     NFFT: int = ...,
     Fs: Scalar = ...,
     Fc: int = ...,
-    detrend: Union[Literal["none", "mean", "linear"], Callable] = ...,
+    detrend: Union[Literal["none", "mean", "linear"], _DetrendCallable] = ...,
     window: Union[Callable, ndarray] = ...,
     noverlap: int = ...,
     pad_to: Optional[int] = ...,
@@ -175,7 +177,7 @@ def csd(
     NFFT: int = ...,
     Fs: Scalar = ...,
     Fc: int = ...,
-    detrend: Union[Literal["none", "mean", "linear"], Callable] = ...,
+    detrend: Union[Literal["none", "mean", "linear"], _DetrendCallable] = ...,
     window: Union[Callable, ndarray] = ...,
     noverlap: int = ...,
     pad_to: Optional[int] = ...,
@@ -557,7 +559,7 @@ def psd(
     NFFT: int = ...,
     Fs: Scalar = ...,
     Fc: int = ...,
-    detrend: Union[Literal["none", "mean", "linear"], Callable] = ...,
+    detrend: Union[Literal["none", "mean", "linear"], _DetrendCallable] = ...,
     window: Union[Callable, ndarray] = ...,
     noverlap: int = ...,
     pad_to: Optional[int] = ...,
@@ -637,7 +639,7 @@ def specgram(
     NFFT: int = ...,
     Fs: Scalar = ...,
     Fc: int = ...,
-    detrend: Union[Literal["none", "mean", "linear"], Callable] = ...,
+    detrend: Union[Literal["none", "mean", "linear"], _DetrendCallable] = ...,
     window: Union[Callable, ndarray] = ...,
     noverlap: int = ...,
     cmap: Optional[Colormap] = ...,
@@ -848,7 +850,7 @@ def xcorr(
     x: ArrayLike,
     y: ArrayLike,
     normed: bool = ...,
-    detrend: Callable = ...,
+    detrend: _DetrendCallable = ...,
     usevlines: bool = ...,
     maxlags: int = ...,
     *,
